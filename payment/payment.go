@@ -24,7 +24,7 @@ func NewService(username, apiKey, env string) Service {
 
 // RequestB2C sends a B2C request
 func (service Service) RequestB2C(body B2CRequest) (*B2CResponse, error) {
-	url := util.GetMobilePaymentB2CUrl(service.Env)
+	url := util.GetMobilePaymentB2CURL(service.Env)
 
 	reqBody, err := json.Marshal(body)
 	if err != nil {
@@ -35,16 +35,16 @@ func (service Service) RequestB2C(body B2CRequest) (*B2CResponse, error) {
 	if err != nil {
 		return nil, err
 	}
+	defer response.Body.Close()
 
 	var b2cResponse B2CResponse
 	json.NewDecoder(response.Body).Decode(&b2cResponse)
-	defer response.Body.Close()
 	return &b2cResponse, nil
 }
 
 // RequestB2B sends a B2B request
 func (service Service) RequestB2B(body B2BRequest) (*B2BResponse, error) {
-	url := util.GetMobilePaymentB2BUrl(service.Env)
+	url := util.GetMobilePaymentB2BURL(service.Env)
 
 	reqBody, err := json.Marshal(body)
 	if err != nil {
@@ -55,16 +55,16 @@ func (service Service) RequestB2B(body B2BRequest) (*B2BResponse, error) {
 	if err != nil {
 		return nil, err
 	}
+	defer response.Body.Close()
 
 	var b2bResponse B2BResponse
 	json.NewDecoder(response.Body).Decode(&b2bResponse)
-	defer response.Body.Close()
 	return &b2bResponse, nil
 }
 
 // MobileCheckout requests
 func (service Service) MobileCheckout(body MobileCheckoutRequest) (*CheckoutResponse, error) {
-	url := util.GetMobilePaymentCheckoutUrl(service.Env)
+	url := util.GetMobilePaymentCheckoutURL(service.Env)
 
 	reqBody, err := json.Marshal(body)
 	if err != nil {
@@ -75,10 +75,10 @@ func (service Service) MobileCheckout(body MobileCheckoutRequest) (*CheckoutResp
 	if err != nil {
 		return nil, err
 	}
+	defer response.Body.Close()
 
 	var checkoutResponse CheckoutResponse
 	json.NewDecoder(response.Body).Decode(&checkoutResponse)
-	defer response.Body.Close()
 	return &checkoutResponse, nil
 }
 
@@ -100,10 +100,10 @@ func (service Service) CardCheckoutCharge(body CardCheckoutRequest) (*CheckoutRe
 	if err != nil {
 		return nil, err
 	}
+	defer response.Body.Close()
 
 	var checkoutResponse CheckoutResponse
 	json.NewDecoder(response.Body).Decode(&checkoutResponse)
-	defer response.Body.Close()
 	return &checkoutResponse, nil
 }
 
@@ -121,10 +121,10 @@ func (service Service) CardCheckoutValidate(body CardValidateCheckoutRequest) (*
 	if err != nil {
 		return nil, err
 	}
+	defer response.Body.Close()
 
 	var cvr CheckoutValidateResponse
 	json.NewDecoder(response.Body).Decode(&cvr)
-	defer response.Body.Close()
 	return &cvr, nil
 }
 
@@ -142,10 +142,10 @@ func (service Service) BankCheckoutCharge(body BankCheckoutRequest) (*CheckoutRe
 	if err != nil {
 		return nil, err
 	}
+	defer response.Body.Close()
 
 	var checkoutResponse CheckoutResponse
 	json.NewDecoder(response.Body).Decode(&checkoutResponse)
-	defer response.Body.Close()
 	return &checkoutResponse, nil
 }
 
@@ -163,10 +163,10 @@ func (service Service) BankCheckoutValidate(body BankValidateCheckoutRequest) (*
 	if err != nil {
 		return nil, err
 	}
+	defer response.Body.Close()
 
 	var cvr CheckoutValidateResponse
 	json.NewDecoder(response.Body).Decode(&cvr)
-	defer response.Body.Close()
 	return &cvr, nil
 }
 
@@ -184,10 +184,10 @@ func (service Service) BankTransfer(body BankTransferRequest) (*BankTransferResp
 	if err != nil {
 		return nil, err
 	}
+	defer response.Body.Close()
 
 	var btr BankTransferResponse
 	json.NewDecoder(response.Body).Decode(&btr)
-	defer response.Body.Close()
 	return &btr, nil
 }
 
