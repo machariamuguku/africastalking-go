@@ -52,7 +52,7 @@ The package needs to be configured with your app username and API key (which you
 const (
 	apiKey = "YOUR_API_KEY"		    //Production or Sandbox API Key
 	username = "YOUR_USERNAME"	    //Your Africa's Talking Username
-	env = ""		                // Choose either Sandbox or Production
+	env = ""		                // Choose either sandbox or production
 )
 ```
 
@@ -94,9 +94,9 @@ import (
 )
 
 const (
-	username = "" //Your Africa's Talking Username
+	username = "" // Choose either Sandbox for test or Your Africa's Talking Username for production
 	apiKey   = "" //Production or Sandbox API Key
-	env   = "" // Choose either Sandbox or Production
+	env   = "" // Choose either sandbox or production
 )
 
 func main() {
@@ -105,7 +105,7 @@ func main() {
 
 	//Send SMS - REPLACE Recipient and Message To Send with REAL Values
 	//Leave ShortCode blank, "", if you don't have one
-	smsResponse, err := smsService.Send("Recipient", "Message To Send", "ShortCode")
+	smsResponse, err := smsService.Send("ShortCode", "Recipient", "Message To Send")
 	if err != nil {
 		fmt.Println(err)
 	}
