@@ -103,8 +103,9 @@ func main() {
 	//Call the Gateway, and pass the constants here!
 	smsService := sms.NewService(username, apiKey, env)
 
-	//Send SMS - REPLACE Recipient and Message with REAL Values
-	recipients, err := smsService.Send("Recipient", "Message To Send", "ShortCode" //Leave blank, "", if you don't have one)
+	//Send SMS - REPLACE Recipient and Message To Send with REAL Values
+	//Leave ShortCode blank, "", if you don't have one
+	smsResponse, err := smsService.Send("Recipient", "Message To Send", "ShortCode")
 	if err != nil {
 		fmt.Println(err)
 	}
